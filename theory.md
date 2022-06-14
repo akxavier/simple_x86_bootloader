@@ -1,0 +1,11 @@
+## What is a Bootloader?
+- When the computer turns on, the processor looks at physical address 0xFFFFFFF0 for the BIOS code.
+- BIOS then POSTs and searches for an acceptable boot media.
+- Criteria for acceptable boot media:
+  - the boot sector (first 512 bytes of the disk) is readable
+  - and it ends with 0x55AA, which is the boot signature
+- When the BIOS finds an acceptable boot medium, it loads the first 512 bytes of the drive into the memory address 0x7C00 and transfers control to this address with a jump instruction.
+- If there are more than one drive with acceptable boot sectors, BIOS will boot from the one with highest pre-assigned priority.
+- Master Boot Record (MBR) is a very common boot sector standard for partitioned storage devices.
+- MBR passes control to a larger bootloader, which in turn loads the OS and this is called *chain-loading*.
+- Execution is passed over to bootstrap code while the processor is in *real mode*, rather than in *protected mode*.
