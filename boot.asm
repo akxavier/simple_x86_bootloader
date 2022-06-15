@@ -1,9 +1,5 @@
 bits 16
 
-msg: db 'This is a simple bootloader!!!', 0
-times 510 ($-$$) db 0
-dw 0xAA55 			;boot signature
-
 mov ax, 0x07C0
 mov ds, ax
 mov ax, 0x07E0
@@ -73,3 +69,7 @@ print:
 	mov sp, bp
 	pop bp
 	ret
+
+msg : db "This is a simple bootloader!!!", 0
+times 510-($-$$) db 0
+dw 0xAA55
